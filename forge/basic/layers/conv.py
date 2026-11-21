@@ -1,0 +1,1 @@
+#TODO: Conv2D class. Weight/bias parameters, initialization, convolution calls and cached input.

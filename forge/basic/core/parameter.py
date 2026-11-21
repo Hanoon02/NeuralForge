@@ -1,0 +1,1 @@
+#TODO: Parameter class. Stores weights, biases and their gradients.

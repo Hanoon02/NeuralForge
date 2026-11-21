@@ -1,0 +1,1 @@
+Every layer should inherit from Module and implement its own forward and backward methods.

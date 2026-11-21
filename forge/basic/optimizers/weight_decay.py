@@ -1,0 +1,1 @@
+#TODO: WeightDecay class. L2 regularization and weight decay logic.

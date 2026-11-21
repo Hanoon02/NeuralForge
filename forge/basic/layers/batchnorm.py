@@ -1,0 +1,1 @@
+#TODO: BatchNorm2D class. Gamma, beta, running mean, running variance and batch normalization gradients.

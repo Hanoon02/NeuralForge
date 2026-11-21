@@ -1,0 +1,1 @@
+#TODO: Linear class. Fully connected layer, weights, biases and gradients.x§

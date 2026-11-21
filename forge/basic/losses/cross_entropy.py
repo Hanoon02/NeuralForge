@@ -1,0 +1,1 @@
+#TODO: CrossEntropyLoss, SoftmaxCrossEntropy classes. Cross-entropy calculation, stable softmax combination and gradients.

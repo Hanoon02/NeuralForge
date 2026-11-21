@@ -1,0 +1,1 @@
+#TODO: initialize_weights(). Implements He, Xavier, zero and one initialization. Also set_random_seed().

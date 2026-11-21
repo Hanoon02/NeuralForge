@@ -1,0 +1,1 @@
+# Batch size, epochs, learning rate, momentum, weight decay, number of classes and block configuration.

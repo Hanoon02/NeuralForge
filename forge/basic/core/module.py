@@ -1,0 +1,1 @@
+#TODO: Module base class and Sequential class. Handles forward/backward interfaces, parameter discovery, training/evaluation modes and gradient resetting.

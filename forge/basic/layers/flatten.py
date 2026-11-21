@@ -1,0 +1,1 @@
+#TODO: Flatten class. Flattening layer and original input shape cache.

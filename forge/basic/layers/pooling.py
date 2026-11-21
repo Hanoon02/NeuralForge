@@ -1,0 +1,1 @@
+#TODO: MaxPool2D, AvgPool2D, GlobalAvgPool2D classes. Pooling layers and global spatial averaging.

@@ -1,0 +1,1 @@
+All optimizers receive parameters from model.parameters() and update their values using stored gradients.
