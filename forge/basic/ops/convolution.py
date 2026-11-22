@@ -59,7 +59,7 @@ def conv2d_forward(input, kernel, stride, padding):
 
 
 '''
-Convolution backward pass is more like a complain resolution task, the complain itself being the gradient from the next layer.
+Convolution backward pass is more like a complaint resolution task, the complaint itself being the gradient from the next layer.
 Its written in the form of dL/dOutput - how much loss can change if we change output of this layer.
 
 We need to find dL/dMatrix and dL/dKernel. 
@@ -68,16 +68,16 @@ Couple of rules before we can proceed
 1. The dims of dl/dOutput is the same as dims of the original output.
 2. Number of windows from a matrix, kernel, stride and padding is equal to output_height * output_width.
 
-The kernel gradient will be the same size as the kernel itself. Computed from complain * window
-When we multiply every object in complain with the window, we get a set of matrices which is the same size as window and equal to the number of items in complain matrix or the output.
+The kernel gradient will be the same size as the kernel itself. Computed from complaint * window
+When we multiply every object in complaint with the window, we get a set of matrices which is the same size as window and equal to the number of items in complaint matrix or the output.
 Summing them all up, ie stacking them all together, gets you the new kernel gradient.
 
-The matrix gradient will be the same size as original matrix. Computed from complain * kernel.
+The matrix gradient will be the same size as original matrix. Computed from complaint * kernel.
 Similiarly we will trace the output creation and stack everything up in the end to get the final input matrix gradient.
 
 With that, we proceed on to the next steps.
 1. New kernel = kernel - learning_rate * dL/dKernel
-2. The dl/dMatrix leaves and then goes backward as the complain itself to whatever produced it in the first place.
+2. The dl/dMatrix leaves and then goes backward as the complaint itself to whatever produced it in the first place.
 
 Naturally, the first layer, ie the original image itself wont be updated.
 
@@ -90,22 +90,22 @@ In case of padding, flow is slightly different.
 def conv2d_backward(input, kernel, stride, padding, output_gradient):
     image = np.asarray(input)
     weights = np.asarray(kernel)
-    complain = np.asarray(output_gradient)
+    complaint = np.asarray(output_gradient)
     padded_input = apply_padding_2d(image, padding)
     kernel_height, kernel_width = weights.shape
 
-    kernel_gradient = np.zeros(weights.shape, dtype=np.result_type(image, weights, complain))
-    padded_input_gradient = np.zeros(padded_input.shape, dtype=np.result_type(image, weights, complain))
+    kernel_gradient = np.zeros(weights.shape, dtype=np.result_type(image, weights, complaint))
+    padded_input_gradient = np.zeros(padded_input.shape, dtype=np.result_type(image, weights, complaint))
 
-    output_height, output_width = complain.shape
+    output_height, output_width = complaint.shape
     for row in range(output_height):
         for col in range(output_width):
             start_row = row * stride
             start_col = col * stride
             window = padded_input[start_row:start_row + kernel_height, start_col:start_col + kernel_width]
-            kernel_gradient += complain[row, col] * window
+            kernel_gradient += complaint[row, col] * window
             padded_input_gradient[start_row:start_row + kernel_height, start_col:start_col + kernel_width] += (
-                complain[row, col] * weights
+                complaint[row, col] * weights
             )
 
     if padding:
