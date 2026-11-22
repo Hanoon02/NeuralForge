@@ -21,3 +21,8 @@ The Basic section essentially focuses on using standard packages like NumPy, Pan
 2. Numpy's promotion system is used to determine the data type of the output array.
     - Priority of data types is: bool, int, float, complex
     - Largest bit size is used.
+
+3. np.astype(dtype, copy=False) is used to convert the input to the desired data type.
+    - copy=False means the input is modified in place.
+
+4. np.reshape(-1) is used to flatten the matrix to a vector.
