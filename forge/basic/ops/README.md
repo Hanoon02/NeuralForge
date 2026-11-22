@@ -1,11 +1,19 @@
 # Ops
 
-These files contain the actual mathematical implementations, independent of neural network layer classes.
+Pure NumPy forward/backward **functions**. They do not own weights. `layers/` wraps them in `Module` subclasses that hold `Parameter`s and can be composed into ResNet, VAE, etc.
 
-conv2d() performs convolution and, on the backward pass, returns both the input gradient and the kernel gradient. It does not own trainable weights. That responsibility belongs to Conv2D.
-max_pool2d() and avg_pool2d() only route the incoming gradient back to the input. Pooling has no weights to update.
+| Op module | Role | Layer consumer |
+|-----------|------|----------------|
+| `convolution` | conv2d ± grad | `Conv2D` |
+| `pooling` | max/avg pool ± grad | `MaxPool2D`, `AvgPool2D` |
+| `activation` | relu, softmax (+ sigmoid/tanh TODOs) | `ReLU`, `Softmax`, … |
+| `tensor_ops` | flatten (+ reshape TODOs) | `Flatten` |
+| `linear` | affine ± grad | `Linear` |
+| `batchnorm` | normalize ± grad | `BatchNorm1D/2D` |
+| `dropout` | mask ± grad | `Dropout` |
+| `conv_transpose` | upsample conv ± grad | `ConvTranspose2D` |
 
 Defaults:
 
 1. Convolution uses stride 1 and padding 0.
-2. Pooling uses a 2×2 window and padding 0. The default stride is the window height, kernel_shape[0]. For the usual square window that stride is 2, so each window starts where the previous one ended.
+2. Pooling uses a 2×2 window and padding 0; default stride is `kernel_shape[0]`.

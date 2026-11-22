@@ -1,3 +1,6 @@
+# Stateless tensor shaping helpers. Done: flatten. Layers own Parameters; ops stay pure functions.
+# TODO: reshape_forward / reshape_backward - General reshape with cached input shape.
+# TODO: transpose_forward / transpose_backward - Axis permutation + inverse perm for grads.
 import numpy as np
 
 def flatten_forward(input):

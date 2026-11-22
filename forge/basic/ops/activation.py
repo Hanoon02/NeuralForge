@@ -1,3 +1,6 @@
+# Functional activations used by layers.activation modules. Done: relu, softmax.
+# TODO: sigmoid_forward / sigmoid_backward / sigmoid - For VAE Bernoulli heads and gates.
+# TODO: tanh_forward / tanh_backward / tanh - Bounded activations for MLPs / older CNN stacks.
 import numpy as np
 
 def relu_forward(input):
