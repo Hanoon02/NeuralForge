@@ -141,3 +141,35 @@ def test_eigenvector_jordan_block():
             vector = np.asarray(vector, dtype=float)
             assert _is_parallel(vector, [1.0, 0.0])
             assert np.allclose(matrix @ vector, value * vector)
+
+
+def _assert_qr(matrix):
+    orthogonal, upper = eigen.qr_decomposition(matrix.tolist())
+    orthogonal = np.asarray(orthogonal, dtype=float)
+    upper = np.asarray(upper, dtype=float)
+    size = matrix.shape[0]
+    assert np.allclose(orthogonal.T @ orthogonal, np.eye(size))
+    assert np.allclose(np.tril(upper, k=-1), 0)
+    assert np.allclose(orthogonal @ upper, matrix)
+
+
+def test_qr_decomposition_2x2():
+    _assert_qr(np.array([
+        [1.0, 0.0],
+        [2.0, 3.0],
+    ]))
+
+
+def test_qr_decomposition_symmetric():
+    _assert_qr(np.array([
+        [2.0, 1.0],
+        [1.0, 2.0],
+    ]))
+
+
+def test_qr_decomposition_3x3():
+    _assert_qr(np.array([
+        [1.0, 2.0, 3.0],
+        [0.0, 1.0, 4.0],
+        [5.0, 6.0, 0.0],
+    ]))
