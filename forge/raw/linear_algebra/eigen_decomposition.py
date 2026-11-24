@@ -93,3 +93,13 @@ def eigenvector(A, eigenvalues):
             eigenvectors.append([1, 0])
         
     return eigenvectors
+
+
+
+'''
+QR Decomposition:
+We can represent any square matrix as a product of an orthogonal matrix and an upper triangular matrix.
+
+ie, A = Q * R, where Q is orthogonal and R is upper triangular.
+
+'''
